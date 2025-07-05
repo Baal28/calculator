@@ -1,7 +1,5 @@
 *{
-    margin: 0;
-    padding: 0;
-    background-color: lightgray;
+    background-color: #D2D4C8;
 }
 
 body {
@@ -22,11 +20,56 @@ body {
 
 .container-calculator{
     border: 1px solid black;
-    border-radius: 1%;
+    border-radius: 2%;
     padding: 32px 16px;
-    max-width: 312px;
+    width: 312px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    background-color: rgb(34, 34, 46);
+    background-color: #8B2635;
 }
+
+.keypad{
+    background-color: #8B2635;
+}
+
+
+.display{
+    border: 1px solid black;
+    height: 64px;
+    padding: 14px;
+    font-family: "IBM Plex Mono", sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    background-color: #D3EFBD;
+}
+
+.firstrow{
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    background-color: #8B2635;
+    margin-right: 16px;
+}
+
+.otherrows{
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+    background-color: #8B2635;
+}
+
+button{
+    width: 64px;
+    height: 64px;
+    color: #2E3532;
+    font-size: 24px;
+    font-weight: 900;
+    border-radius: 15%;
+}
+

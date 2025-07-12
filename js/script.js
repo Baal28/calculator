@@ -47,5 +47,75 @@ decimalPointKey.addEventListener('click', () => {
       display.textContent = currentNumber;  
     }
     
-})
+});
 
+// Step 4: Handle Operator Key Clicks.
+
+operatorKeys.forEach(button => {
+    button.addEventListener('click', () => {
+        const clickedOperator = button.textContent;
+            operator = clickedOperator;
+            leftOperand = currentNumber;
+            currentNumber= '';
+            display.textContent = `${leftOperand}${operator}`;
+    });
+});
+
+// Step 5: Handle the Equals Key Click.
+
+equalstoKey.addEventListener('click', () => {
+    rightOperand = currentNumber;
+    let lOperand = Number(leftOperand);
+    let rOperand = Number(rightOperand);
+
+    switch (operator) {
+        case '+':
+            let sum = lOperand + rOperand;
+            result = sum;
+            break;
+
+        case '-':
+            let sub = lOperand - rOperand;
+            result = sub;
+            break;
+
+        case '*':
+            let mult = lOperand * rOperand;
+            result = mult;
+            break;
+
+        case '/':
+            if(rOperand != 0){
+                let div = lOperand / rOperand;
+                result = div; 
+            } else {
+                result = NaN;
+                display.textContent = 'You cannot divide by zero!'; 
+            }    
+            break;
+
+        default:
+            break;
+    }
+
+    if(!isNaN(result)){
+        display.textContent = result;
+    }
+
+    currentNumber = result;
+    leftOperand = result;
+    operator = null;
+    rightOperand = '';
+    
+});
+
+// Step 6: Handle All Clear (AC) and Delete (DEL) Keys.
+
+allClearKey.addEventListener('click', () => {
+    currentNumber = '';
+    leftOperand = '';
+    operator = null;
+    rightOperand = '';
+    result = undefined;
+    display.textContent = '0';
+});

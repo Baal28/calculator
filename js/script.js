@@ -14,11 +14,17 @@ let leftOperand = '';
 let operator = null;
 let rightOperand = '';
 let result;
+let shouldResetDisplay = false;
 
 // Step 3: Handle Numeric Key Clicks.
 
 numericKeys.forEach(button => {
     button.addEventListener('click', () => {
+        if(shouldResetDisplay === true ){
+            currentNumber = '';
+            shouldResetDisplay = false;
+        }
+
         const clickedDigit = button.textContent;
         
         if(clickedDigit === '0'){
@@ -53,6 +59,10 @@ decimalPointKey.addEventListener('click', () => {
 
 operatorKeys.forEach(button => {
     button.addEventListener('click', () => {
+        if(shouldResetDisplay){
+            shouldResetDisplay = false;
+        }
+
         const clickedOperator = button.textContent;
             operator = clickedOperator;
             leftOperand = currentNumber;
@@ -106,7 +116,7 @@ equalstoKey.addEventListener('click', () => {
     leftOperand = result;
     operator = null;
     rightOperand = '';
-    
+    shouldResetDisplay = true;
 });
 
 // Step 6: Handle All Clear (AC) and Delete (DEL) Keys.
@@ -118,4 +128,14 @@ allClearKey.addEventListener('click', () => {
     rightOperand = '';
     result = undefined;
     display.textContent = '0';
+});
+
+deleteKey.addEventListener('click', () =>{
+    currentNumber = currentNumber.slice(0, -1);
+    if(currentNumber === ''){
+        display.textContent = '0'
+    } else {
+        display.textContent = currentNumber;
+    }
+    
 });

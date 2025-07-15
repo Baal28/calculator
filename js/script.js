@@ -108,6 +108,12 @@ equalstoKey.addEventListener('click', () => {
             break;
     }
 
+    // Round decimals
+    if(!isNaN(result)){
+        const factor = Math.pow(10, 10);
+        result = Math.round(result * factor) / factor;
+    };
+
     if(!isNaN(result)){
         display.textContent = result;
     }
@@ -138,4 +144,61 @@ deleteKey.addEventListener('click', () =>{
         display.textContent = currentNumber;
     }
     
+});
+
+// Step 7: Keyboard support.
+
+document.addEventListener('keydown', (e) =>{
+    switch (e.key) {
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+        case '.':
+            
+        numericKeys.forEach(button => {
+            if(button.textContent === e.key){
+               button.click();
+            }
+        });
+
+        if(e.key === '.' && decimalPointKey.textContent === e.key){
+            decimalPointKey.click();
+        }
+        break;
+
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+            
+        operatorKeys.forEach(button => {
+            if(button.textContent === e.key){
+                button.click();
+            };
+        });
+        break;
+
+        case 'Enter':    
+            equalstoKey.click();
+        break;
+        
+        case 'Backspace':
+            deleteKey.click();
+        break;
+        
+        case 'Escape':
+        case 'c':    
+            allClearKey.click();
+        break;    
+    
+        default:
+            break;
+    }
 });
